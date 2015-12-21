@@ -1,2 +1,2 @@
 # iOS SDK Examples
-Playgound for practicing iOS SDK 
+Playground for practicing iOS SDK 
