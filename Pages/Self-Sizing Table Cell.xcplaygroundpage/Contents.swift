@@ -8,17 +8,6 @@
 import Foundation
 import UIKit
 
-import XCPlayground
-
-/*:
-Prepare for key window and live view
-*/
-var window : UIWindow! = UIWindow(frame: CGRect(x: 0.0, y: 0.0, width: 320, height: 480))
-window.backgroundColor = [#Color(colorLiteralRed: 1, green: 0, blue: 0, alpha: 1)#]
-window.makeKeyAndVisible()
-XCPlaygroundPage.currentPage.liveView = UIApplication.sharedApplication().keyWindow!
-print(UIApplication.sharedApplication().keyWindow!)
-
 class TableViewController: UITableViewController {
 
     let cellIdentifier = "Cell"
@@ -36,7 +25,7 @@ class TableViewController: UITableViewController {
         // 줄의 좌우 여백을 준다.
         self.tableView.separatorInset = UIEdgeInsetsMake(0, 15, 0, 15)
 
-        self.tableView.estimatedRowHeight = 64
+        self.tableView.estimatedRowHeight = 5
         self.tableView.rowHeight = UITableViewAutomaticDimension
     }
 
@@ -52,7 +41,7 @@ class TableViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        return 10
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -100,20 +89,26 @@ class TableViewController: UITableViewController {
             NSLayoutConstraint.activateConstraints(constraints)
         }
 
+        //
+        // templateImage를 이용해서 색(tintColor)를 변경하기
+        // row에 따라서 색을 변경
         let view = cell.viewWithTag(kImageTag) as! UIImageView
-        view.image = cellImage
+        let templateImage = cellImage.imageWithRenderingMode(.AlwaysTemplate)
+        view.image = templateImage
+        view.tintColor = UIColor(hue: CGFloat(indexPath.row) * 0.1, saturation: 1.0, brightness: 1.0, alpha: 1.0)
 
         return cell
     }
+
+    func simulateUserInput() {
+        tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: 9, inSection: 0), atScrollPosition: .Bottom, animated: true)
+    }
 }
 
-/*:
-Show
-*/
-let tableViewController = TableViewController(style: .Plain)
-UIApplication.sharedApplication().keyWindow!.rootViewController = tableViewController
+let viewController = TableViewController(style: .Plain)
+PlaygroundHelper.showViewController(viewController)
 
-
-
-
+Utility.runActionAfterTime(1.0) {
+    viewController.simulateUserInput()
+}
 

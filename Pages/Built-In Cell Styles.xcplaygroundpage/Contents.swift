@@ -6,18 +6,6 @@
 import Foundation
 import UIKit
 
-import XCPlayground
-
-/*:
-Prepare for key window and live view
-*/
-var window : UIWindow! = UIWindow(frame: CGRect(x: 0.0,
-    y: 0.0, width: 320, height: 480))
-window.backgroundColor = [#Color(colorLiteralRed: 1, green: 0, blue: 0, alpha: 1)#]
-window.makeKeyAndVisible()
-XCPlaygroundPage.currentPage.liveView = UIApplication.sharedApplication().keyWindow!
-//print(UIApplication.sharedApplication().keyWindow!)
-
 class TableViewController: UITableViewController {
 
     let cellIdentifiers = ["Cell0", "Cell1", "Cell2", "Cell3", "Cell4"]
@@ -67,6 +55,10 @@ UITableViewCell에서 제공하는 기본 스타일에서 사용하는 속성들
 
 */
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+
+        // for debug
+        tableView.visibleCells
+
         let section = indexPath.section
 
         var cell : UITableViewCell! = tableView.dequeueReusableCellWithIdentifier(cellIdentifiers[section])
@@ -103,13 +95,7 @@ UITableViewCell에서 제공하는 기본 스타일에서 사용하는 속성들
     }
 }
 
-/*:
-Show
-*/
-let tableViewController = TableViewController(style: .Plain)
-UIApplication.sharedApplication().keyWindow!.rootViewController = tableViewController
-
-
+PlaygroundHelper.showViewController(TableViewController(style: .Plain))
 
 
 

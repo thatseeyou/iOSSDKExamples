@@ -9,22 +9,11 @@
 
 ### tableView: titleForFooterInSection:
 * 간단히 title만 변경할 때 사용할 수 있다.
-* ""인 경우에는 heigth = 0 인 되어서 표시되지 않는다.
+* ""인 경우에는 heigth = 0 이 되어서 표시되지 않는다.
 * 배경색을 변경하고자 하는 경우에는 footerViewForSection()을 통해서 변경할 수 있다.
 */
 import Foundation
 import UIKit
-
-import XCPlayground
-
-/*:
-Prepare for key window and live view
-*/
-var window : UIWindow! = UIWindow(frame: CGRect(x: 0.0, y: 0.0, width: 320, height: 480))
-window.backgroundColor = [#Color(colorLiteralRed: 1, green: 0, blue: 0, alpha: 1)#]
-window.makeKeyAndVisible()
-XCPlaygroundPage.currentPage.liveView = UIApplication.sharedApplication().keyWindow!
-print(UIApplication.sharedApplication().keyWindow!)
 
 class MyCell: UITableViewCell {
     // cell style을 변경하기 위해서 override 했다.
@@ -113,11 +102,7 @@ class TableViewController: UITableViewController {
     }
 }
 
-/*:
-Show
-*/
-let tableViewController = TableViewController(style: .Plain)
-UIApplication.sharedApplication().keyWindow!.rootViewController = tableViewController
+PlaygroundHelper.showViewController(TableViewController(style: .Plain))
 
 
 

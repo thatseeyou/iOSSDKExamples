@@ -6,34 +6,52 @@
 import UIKit
 import XCPlayground
 
-let containerView = UIView(frame: CGRect(x: 0.0, y: 0.0, width: 320, height: 480))
-XCPlaygroundPage.currentPage.liveView = containerView
+class ViewController: UIViewController {
+    let startingColor = [#Color(colorLiteralRed: 0.9411764705882353, green: 0.7843137254901961, blue: 0.5411764705882353, alpha: 1)#]
+    let endingColor = [#Color(colorLiteralRed: 1, green: 0, blue: 0, alpha: 1)#]
 
-let startingColor = [#Color(colorLiteralRed: 0.9411764705882353, green: 0.7843137254901961, blue: 0.5411764705882353, alpha: 1)#]
-let endingColor = [#Color(colorLiteralRed: 1, green: 0, blue: 0, alpha: 1)#]
+    var circle:UIView!
+    var rectangle:UIView!
 
-//: Make circle
-let circle = UIView(frame: CGRect(x: 0.0, y: 0.0, width: 50.0, height: 50.0))
-circle.layer.cornerRadius = 25.0
-circle.backgroundColor = startingColor
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
 
-//: Make rectangle
-let rectangle = UIView(frame: CGRect(x: 0.0, y: 0.0, width: 50.0, height: 50.0))
-rectangle.layer.cornerRadius = 5.0
-rectangle.backgroundColor = UIColor.whiteColor()
+        construnctView()
 
-//: Located on center
-rectangle.center = CGPointMake(containerView.bounds.width / 2, containerView.bounds.height / 2)
-circle.center = CGPointMake(containerView.bounds.width / 2, containerView.bounds.height / 2)
+        self.runAnimation()
+    }
 
-//: Add subview
-containerView.addSubview(circle);
-containerView.addSubview(rectangle)
+    func construnctView() {
+        //: Make circle
+        circle = UIView(frame: CGRect(x: 0.0, y: 0.0, width: 50.0, height: 50.0))
+        circle.layer.cornerRadius = 25.0
+        circle.backgroundColor = startingColor
 
-//: animateWithDuration
-UIView.animateWithDuration(4.0, animations: { () -> Void in
-    circle.backgroundColor = endingColor
+        //: Make rectangle
+        rectangle = UIView(frame: CGRect(x: 0.0, y: 0.0, width: 50.0, height: 50.0))
+        rectangle.layer.cornerRadius = 5.0
+        rectangle.backgroundColor = UIColor.whiteColor()
 
-    circle.transform = CGAffineTransformMakeScale(5.0, 5.0)
-    rectangle.transform = CGAffineTransformMakeRotation(3.14)
-})
+        //: Located on center
+        rectangle.center = CGPointMake(view.bounds.width / 2, view.bounds.height / 2)
+        circle.center = CGPointMake(view.bounds.width / 2, view.bounds.height / 2)
+
+        //: Add subview
+        view.addSubview(circle)
+        view.addSubview(rectangle)
+    }
+
+    func runAnimation() {
+        //: animateWithDuration
+        UIView.animateWithDuration(4.0) { () -> Void in
+            print("start animation")
+            self.circle.backgroundColor = self.endingColor
+
+            self.circle.transform = CGAffineTransformMakeScale(5.0, 5.0)
+            self.rectangle.transform = CGAffineTransformMakeRotation(3.14)
+        }
+    }
+}
+
+PlaygroundHelper.showViewController(ViewController())
+
