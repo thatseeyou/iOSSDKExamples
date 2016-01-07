@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<playground version='6.0' target-platform='ios' auto-termination-delay='10' display-mode='raw' executeOnSourceChanges='false' timelineScrubberEnabled='true'>
+<playground version='6.0' target-platform='ios' auto-termination-delay='20' display-mode='raw' executeOnSourceChanges='false' timelineScrubberEnabled='true'>
     <pages>
         <page name='Optional'/>
         <page name='UITextChcker'/>
@@ -14,5 +14,6 @@
         <page name='beginUpdate'/>
         <page name='UIRefreshControl'/>
         <page name='NSURL'/>
+        <page name='NSCharacterSet'/>
     </pages>
 </playground>
