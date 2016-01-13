@@ -5,6 +5,9 @@ func showCharacterSet(charset:NSCharacterSet, printGlyph:Bool = false) {
     //
     // NSData는 연속적이지 않을 수 있으므로 bytes 속성을 이용하면 불연속적인 경우에는 시간이 오래 걸릴 수 있다.
     // 이 경우에 enumerateRangesUsingBlock을 이용하면 연속적인 여러 개의 block을 리턴한다.
+    //
+    // bitmapRepresentation이 8192(0 ~ 65535) bytes인 경우도 있지만 
+    // 2 bytes 범위를 넘어서는 경우도 있다.
     charset.bitmapRepresentation.enumerateByteRangesUsingBlock {
         (pointer: UnsafePointer<Void>, range: NSRange, stop: UnsafeMutablePointer<ObjCBool>) in
             print(range)
