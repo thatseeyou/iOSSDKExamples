@@ -6,29 +6,29 @@
 import UIKit
 import XCPlayground
 
-class ViewController: UIViewController {
+class ViewController: UIViewControllerTrace {
     let startingColor = [#Color(colorLiteralRed: 0.9411764705882353, green: 0.7843137254901961, blue: 0.5411764705882353, alpha: 1)#]
     let endingColor = [#Color(colorLiteralRed: 1, green: 0, blue: 0, alpha: 1)#]
 
-    var circle:UIView!
-    var rectangle:UIView!
+    var circle:UIViewTrace!
+    var rectangle:UIViewTrace!
 
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
 
         construnctView()
 
-        self.runAnimation()
+        //self.runAnimation()
     }
 
     func construnctView() {
         //: Make circle
-        circle = UIView(frame: CGRect(x: 0.0, y: 0.0, width: 50.0, height: 50.0))
+        circle = UIViewTrace(frame: CGRect(x: 0.0, y: 0.0, width: 50.0, height: 50.0))
         circle.layer.cornerRadius = 25.0
         circle.backgroundColor = startingColor
 
         //: Make rectangle
-        rectangle = UIView(frame: CGRect(x: 0.0, y: 0.0, width: 50.0, height: 50.0))
+        rectangle = UIViewTrace(frame: CGRect(x: 0.0, y: 0.0, width: 50.0, height: 50.0))
         rectangle.layer.cornerRadius = 5.0
         rectangle.backgroundColor = UIColor.whiteColor()
 

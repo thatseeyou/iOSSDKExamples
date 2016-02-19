@@ -6,12 +6,26 @@
 import Foundation
 import UIKit
 
+class MyCollectionViewCell: UICollectionViewCell {
+
+    // dequeueReusableCellWithReuseIdentifier 호출을 하면
+    // queue에서 꺼내거나 새로 만들거나 한다.
+    // queue에서 재활용하는 경우에만 아래의 method가 호출된다.
+    override func prepareForReuse() {
+        super.prepareForReuse()
+
+        print("prepareForReuse()")
+    }
+}
+
 class ViewController: UICollectionViewController {
+    let sectionNames = ["First Section", "Second Section"]
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Interface Builder를 사용하는 경우에는 불필요하다.
-        self.collectionView?.registerClass(UICollectionViewCell.self, forCellWithReuseIdentifier: "Cell")
+        self.collectionView?.registerClass(MyCollectionViewCell.self, forCellWithReuseIdentifier: "Cell")
 
         self.collectionView!.registerClass(UICollectionReusableView.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "Header")
 
@@ -19,11 +33,15 @@ class ViewController: UICollectionViewController {
         // FlowLayout 설정
         // 아래와 같이 정적인 속성을 하거나
         // UICollectionViewDelegateFlowLayout을 통해서 동적인 설정할 수도 있다.
-//        let layout = self.collectionView!.collectionViewLayout as! UICollectionViewFlowLayout
+        let layout = self.collectionView!.collectionViewLayout as! UICollectionViewFlowLayout
 //        layout.itemSize = CGSizeMake(150,50)
 //        layout.minimumLineSpacing = 10.0
 //        layout.minimumInteritemSpacing = 10.0
 
+        // scrolling direction에 따라서 한 쪽 값은 무시된다.
+        layout.headerReferenceSize = CGSizeMake(30, 30)
+        // 디폴트가 (0,0,0,0)
+        layout.sectionInset = UIEdgeInsetsMake(0, 0, 0, 0)
 
         // 배경을 지정하는 2가지 방법
         // backgroundColor vs. backgroundView
@@ -41,12 +59,13 @@ class ViewController: UICollectionViewController {
 //        return true
 //    }
 //
+    // 1개일 경우에는 아래의 method 생략 가능
     override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-        return 1
+        return 2
     }
 
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 30
+        return 10
     }
 
     /*
@@ -99,20 +118,17 @@ class ViewController: UICollectionViewController {
         var v : UICollectionReusableView! = nil
         if kind == UICollectionElementKindSectionHeader {
             v = collectionView.dequeueReusableSupplementaryViewOfKind(UICollectionElementKindSectionHeader, withReuseIdentifier:"Header", forIndexPath:indexPath)
+            v.backgroundColor = [#Color(colorLiteralRed: 0, green: 0, blue: 1, alpha: 1)#]
             if v.subviews.count == 0 {
                 v.addSubview(UILabel(frame:CGRectMake(0,0,30,30)))
             }
             let lab = v.subviews[0] as! UILabel
-            //lab.text = (self.sectionNames)[indexPath.section]
+            lab.text = (self.sectionNames)[indexPath.section]
+            lab.backgroundColor = [#Color(colorLiteralRed: 1, green: 0, blue: 1, alpha: 1)#]
+            lab.sizeToFit()
             lab.textAlignment = .Center
         }
         return v
-    }
-
-
-    func simulateUserInput() {
-        collectionView?.scrollToItemAtIndexPath(NSIndexPath(forItem: 29, inSection: 0), atScrollPosition: .Bottom, animated: true)
-
     }
 }
 
@@ -125,7 +141,7 @@ extension ViewController : UICollectionViewDelegateFlowLayout {
     //    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets {
     //    }
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat {
-        return 10.0
+        return 20.0
     }
 
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAtIndex section: Int) -> CGFloat {
@@ -137,6 +153,13 @@ extension ViewController : UICollectionViewDelegateFlowLayout {
     //    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
     //
     //    }
+}
+
+extension ViewController {
+    func simulateUserInput() {
+        collectionView?.scrollToItemAtIndexPath(NSIndexPath(forItem: 9, inSection: 1), atScrollPosition: .Bottom, animated: true)
+
+    }
 }
 
 let viewController = ViewController(collectionViewLayout:UICollectionViewFlowLayout())
