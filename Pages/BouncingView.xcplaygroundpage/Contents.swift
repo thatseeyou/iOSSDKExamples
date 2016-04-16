@@ -234,6 +234,10 @@ class ViewController: UIViewController {
             v2.sizeToFit()
             containerView.addSubview(v2)
 
+            let v3 = MovingStar(frame: CGRectMake(100, 100, 50, 50))
+            v3.backgroundColor = UIColor.clearColor()
+            v3.movingController!.movingDirection = CGVectorMake(2,-3)
+            containerView.addSubview(v3)
         }
     }
 

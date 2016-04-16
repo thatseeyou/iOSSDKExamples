@@ -1,22 +1,27 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<playground version='6.0' target-platform='ios' auto-termination-delay='20' display-mode='rendered' executeOnSourceChanges='false' timelineScrubberEnabled='true'>
+<playground version='6.0' target-platform='ios' auto-termination-delay='20' display-mode='raw' executeOnSourceChanges='false' timelineScrubberEnabled='true'>
     <pages>
         <page name='UITextChcker'/>
         <page name='View-related events'/>
         <page name='UIView.animateWithDuration'/>
         <page name='UIAlertController'/>
         <page name='UINavigationController'/>
+        <page name='fontNames'/>
         <page name='Extended Grapheme Cluster'/>
         <page name='GKRandomSource'/>
         <page name='[UITableView] Built-In Cell Styles'/>
         <page name='[UITableView] Self-Sizing Table Cell'/>
         <page name='[UITableView] Section Header'/>
         <page name='[UITableViewController] UIRefreshControl'/>
-        <page name='NSURL'/>
+        <page name='NSData from HTTP'/>
         <page name='NSCharacterSet'/>
         <page name='UICollectionView'/>
         <page name='Math'/>
         <page name='AVSpeech'/>
         <page name='BouncingView'/>
+        <page name='CAKeyframeAnimation'/>
+        <page name='transform.rotation.y'/>
+        <page name='Tap&amp;PanGesture'/>
+        <page name='GPS coordinate'/>
     </pages>
 </playground>

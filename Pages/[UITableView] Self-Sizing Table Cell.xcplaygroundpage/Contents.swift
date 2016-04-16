@@ -13,9 +13,9 @@ class TableViewController: UITableViewController {
     let cellIdentifier = "Cell"
 
     let cellImage = [#Image(imageLiteral: "people.user_simple 64.png")#]
-    /*:
-    ## override UIViewController method
-    */
+
+//: override UIViewController method
+//: - - -
     override func viewDidLoad() {
         print ("viewDidLoad")
 
@@ -29,13 +29,11 @@ class TableViewController: UITableViewController {
         self.tableView.rowHeight = UITableViewAutomaticDimension
     }
 
-    /*:
-    ## UITableViewDelegate protocol
-    */
+//: UITableViewDelegate protocol
+//: - - -
 
-    /*:
-    ## UITableViewDataSource protocol
-    */
+//: UITableViewDataSource protocol
+//: - - -
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }

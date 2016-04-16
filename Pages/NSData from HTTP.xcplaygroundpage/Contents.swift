@@ -1,3 +1,6 @@
+/*:
+ # HTTP 응답을 Data로 받아오기
+ */
 import Foundation
 
 let url = NSURL(string: "https://api.whitehouse.gov/v1/petitions.json?limit=30")

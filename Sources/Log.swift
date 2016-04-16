@@ -17,7 +17,7 @@ extension CGRect {
 var eventTraceDepth = -1
 
 public extension NSObject {
-    func enterEventTrace(funcname:String = __FUNCTION__, filename:String = __FILE__) {
+    func enterEventTrace(funcname:String = #function, filename:String = #file) {
         eventTraceDepth += 1
 
         let space = String(count: eventTraceDepth * 4, repeatedValue: Character(" "))
@@ -47,20 +47,20 @@ public extension NSObject {
             }
         }
     }
-    func exitEventTrace(funcname:String = __FUNCTION__, filename:String = __FILE__) {
+    func exitEventTrace(funcname:String = #function, filename:String = #file) {
         eventTraceDepth -= 1
 //        print("<-- \(self.dynamicType)(\(unsafeAddressOf(self)))::\(funcname)")
     }
-    func logTrace(funcname:String = __FUNCTION__) {
+    func logTrace(funcname:String = #function) {
         print("\(self.dynamicType)(\(unsafeAddressOf(self)))::\(funcname) called")
     }
-    func logDebug(msg:String, funcname:String = __FUNCTION__) {
+    func logDebug(msg:String, funcname:String = #function) {
         print("\(self.dynamicType)(\(unsafeAddressOf(self)))::\(funcname) \(msg)")
     }
-    func logViewHierarchy(funcname:String = __FUNCTION__) {
+    func logViewHierarchy(funcname:String = #function) {
         if let view = UIApplication.topViewController()?.view {
             print("\n>>> View hierarcy at \(funcname)")
-            print(view.performSelector("recursiveDescription"))
+            print(view.performSelector(Selector("recursiveDescription")))
             print("<<< View hierarcy at \(funcname)\n")
         }
         else {

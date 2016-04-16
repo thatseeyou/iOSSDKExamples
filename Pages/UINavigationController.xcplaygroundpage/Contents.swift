@@ -8,9 +8,8 @@ import Foundation
 import UIKit
 import Social
 
-/*:
-Root View Controller
-*/
+//: Root View Controller
+//: - - -
 class ViewController : UIViewController {
 
     override func viewDidLoad() {
@@ -30,9 +29,8 @@ class ViewController : UIViewController {
     }
 }
 
-/*:
-Second View Controller
-*/
+//: Second View Controller
+//: - - -
 class ViewController2 : UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
