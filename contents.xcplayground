@@ -23,5 +23,6 @@
         <page name='transform.rotation.y'/>
         <page name='Tap&amp;PanGesture'/>
         <page name='GPS coordinate'/>
+        <page name='CIQRCodeGenerator'/>
     </pages>
 </playground>
